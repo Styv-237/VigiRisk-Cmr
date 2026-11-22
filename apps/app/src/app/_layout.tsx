@@ -1,6 +1,5 @@
 import '@/lib/i18n';
 
-import { Inter_200ExtraLight, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold, useFonts } from '@expo-google-fonts/inter';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 import { QueryClient } from '@tanstack/react-query';
@@ -9,8 +8,11 @@ import { DarkTheme, Stack, ThemeProvider } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Platform } from 'react-native';
 
 import { PlaceContext, loadPlace, savePlace, type Place } from '@/lib/data';
+import { useAppFonts } from '@/lib/fonts';
 import { colors } from '@/theme/tokens';
 
 SplashScreen.preventAutoHideAsync();
@@ -25,7 +27,13 @@ const persister = createAsyncStoragePersister({ storage: AsyncStorage, key: 'vig
 const theme = { ...DarkTheme, colors: { ...DarkTheme.colors, background: colors.bg0, card: colors.bg1, text: colors.text, primary: colors.accent200 } };
 
 export default function RootLayout() {
-  const [fontsLoaded] = useFonts({ Inter_200ExtraLight, Inter_300Light, Inter_400Regular, Inter_500Medium, Inter_600SemiBold, Inter_700Bold });
+  const fontsLoaded = useAppFonts();
+  const { i18n } = useTranslation();
+
+  // Web : langue du document alignée sur la langue affichée (lecteurs d'écran, traduction automatique, SEO).
+  useEffect(() => {
+    if (Platform.OS === 'web') document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
   const [place, setPlaceState] = useState<Place | null>(null);
   const [ready, setReady] = useState(false);
 

@@ -3,7 +3,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 set search_path = public, extensions;
-select plan(27);
+select plan(30);
 
 -- Jeu d'essai (en tant que propriétaire, hors RLS)
 insert into public.admin_areas (pcode, level, parent_pcode, name_codab, name, geom, anchor) values
@@ -68,6 +68,9 @@ select is((select pcode from public.search_areas('mvog ada') limit 1), 'CM900001
 select is((select pcode from public.search_areas('Yaounde 7') limit 1), 'CM900001001', 'search_areas : « 7 » trouve « VII » via le nom COD-AB');
 select is((select pcode from public.search_areas('yaounde vii') limit 1), 'CM900001001', 'search_areas : chiffres romains');
 select is((select pcode from public.search_areas('yaounde 1') limit 1), 'CM900001003', 'search_areas : « 1 » trouve « Yaoundé I »');
+select throws_ok($$ select geom from public.admin_areas limit 1 $$, '42501', null, 'anon ne télécharge pas les géométries');
+select lives_ok($$ select pcode, name from public.admin_areas limit 1 $$, 'anon lit les noms et codes');
+select ok((select count(*) from public.search_areas(repeat('a', 100000))) >= 0, 'search_areas : requête géante tronquée, sans délai dépassé');
 select is((select count(*)::int from public.search_areas('y')), 0, 'search_areas : au moins 2 caractères');
 
 -- ---------- Utilisateur connecté ----------

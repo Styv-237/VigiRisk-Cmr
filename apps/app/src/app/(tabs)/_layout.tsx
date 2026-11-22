@@ -56,7 +56,7 @@ export default function TabsLayout() {
       <TabList asChild>
         <View style={StyleSheet.flatten([styles.barWrap, { bottom: Math.max(insets.bottom, 12) + 6 }])} pointerEvents="box-none">
           <GlassCard level="chrome" style={styles.bar}>
-            <View style={styles.row}>
+            <View style={styles.row} accessibilityRole="tablist">
               <TabTrigger name="index" href="/" asChild>
                 <TabButton icon="cloud" label={t('tabs.weather')} />
               </TabTrigger>

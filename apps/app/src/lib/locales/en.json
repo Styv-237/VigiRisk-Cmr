@@ -1,5 +1,11 @@
 {
-  "tabs": { "weather": "Weather", "groups": "Groups", "report": "Report an incident", "feed": "Community", "profile": "Profile" },
+  "tabs": {
+    "weather": "Weather",
+    "groups": "Groups",
+    "report": "Report an incident",
+    "feed": "Community",
+    "profile": "Profile"
+  },
   "home": {
     "myPosition": "My location",
     "chosenCommune": "Selected council",
@@ -30,7 +36,8 @@
     "change": "Change council",
     "sources": "Methods and sources",
     "retry": "Retry",
-    "offline": "Offline: showing the last saved forecast."
+    "offline": "Offline: showing the last saved forecast.",
+    "loading": "Loading forecast…"
   },
   "search": {
     "title": "Choose a council",
@@ -40,7 +47,9 @@
     "commune": "Council",
     "empty": "No results for “{{q}}”.",
     "hint": "Type at least 2 letters. Examples: Yaoundé VII, Douala V, Garoua.",
-    "close": "Close"
+    "close": "Close",
+    "error": "Search failed: check your connection and try again.",
+    "retry": "Retry"
   },
   "soon": {
     "title": "Coming soon",
@@ -51,8 +60,20 @@
   },
   "disclaimer": "Indicative information. In case of danger, follow the authorities' instructions.",
   "demo": "DEMO DATA — development mode",
-  "time": { "justNow": "just now", "minutes": "{{n}} min ago", "hours": "{{n}} h ago" },
-  "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  "time": {
+    "justNow": "just now",
+    "minutes": "{{n}} min ago",
+    "hours": "{{n}} h ago"
+  },
+  "days": [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ],
   "sourcesPage": {
     "title": "Methods and sources",
     "forecastTitle": "Weather forecasts",
@@ -62,5 +83,10 @@
     "limitsTitle": "Limitations",
     "limitsBody": "Forecasts are for one point per council: in large councils, rainfall can differ between neighbourhoods. Past totals are model estimates and do not replace a rain gauge.",
     "lastUpdate": "Last update for your council: {{date}}"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This address does not exist or no longer exists.",
+    "home": "Back to home"
   }
 }

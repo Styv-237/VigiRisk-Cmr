@@ -16,7 +16,8 @@ export interface Place {
 
 export interface CachedForecast {
   pcode: string;
-  fetchedAt: Date;
+  /** Chaîne ISO et non Date : le cache persistant (JSON) ne restitue pas les objets Date. */
+  fetchedAt: string;
   source: string;
   isDemo: boolean;
   forecast: NormalizedForecast;
@@ -65,7 +66,7 @@ export function useForecast(pcode: string | undefined) {
       if (!data || (data.is_demo && !DEMO_MODE)) return null;
       return {
         pcode: data.commune_pcode,
-        fetchedAt: new Date(data.fetched_at),
+        fetchedAt: data.fetched_at,
         source: data.source,
         isDemo: data.is_demo,
         forecast: data.payload as NormalizedForecast,

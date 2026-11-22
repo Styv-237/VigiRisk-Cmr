@@ -36,7 +36,7 @@ export default function Sources() {
         ))}
         {q.data && (
           <Text style={type.small}>
-            {t('sourcesPage.lastUpdate', { date: q.data.fetchedAt.toLocaleString(i18n.language === 'en' ? 'en-GB' : 'fr-FR', { timeZone: 'Africa/Douala' }) })}
+            {t('sourcesPage.lastUpdate', { date: new Date(q.data.fetchedAt).toLocaleString(i18n.language === 'en' ? 'en-GB' : 'fr-FR', { timeZone: 'Africa/Douala' }) })}
           </Text>
         )}
         <Text style={type.small}>{t('disclaimer')}</Text>

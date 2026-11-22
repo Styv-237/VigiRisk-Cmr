@@ -1,5 +1,11 @@
 {
-  "tabs": { "weather": "Météo", "groups": "Groupes", "report": "Signaler un incident", "feed": "Fil citoyen", "profile": "Profil" },
+  "tabs": {
+    "weather": "Météo",
+    "groups": "Groupes",
+    "report": "Signaler un incident",
+    "feed": "Fil citoyen",
+    "profile": "Profil"
+  },
   "home": {
     "myPosition": "Ma position",
     "chosenCommune": "Commune choisie",
@@ -30,7 +36,8 @@
     "change": "Changer de commune",
     "sources": "Méthodes et sources",
     "retry": "Réessayer",
-    "offline": "Hors connexion : dernières prévisions enregistrées."
+    "offline": "Hors connexion : dernières prévisions enregistrées.",
+    "loading": "Chargement des prévisions…"
   },
   "search": {
     "title": "Choisir une commune",
@@ -40,7 +47,9 @@
     "commune": "Commune",
     "empty": "Aucun résultat pour « {{q}} ».",
     "hint": "Tapez au moins 2 lettres. Exemples : Yaoundé VII, Douala V, Garoua.",
-    "close": "Fermer"
+    "close": "Fermer",
+    "error": "Recherche impossible : vérifiez votre connexion puis réessayez.",
+    "retry": "Réessayer"
   },
   "soon": {
     "title": "Bientôt",
@@ -51,8 +60,20 @@
   },
   "disclaimer": "Information indicative. En cas de danger, suivez les consignes des autorités.",
   "demo": "DONNÉES DE DÉMONSTRATION — mode développement",
-  "time": { "justNow": "à l'instant", "minutes": "il y a {{n}} min", "hours": "il y a {{n}} h" },
-  "days": ["Dim.", "Lun.", "Mar.", "Mer.", "Jeu.", "Ven.", "Sam."],
+  "time": {
+    "justNow": "à l'instant",
+    "minutes": "il y a {{n}} min",
+    "hours": "il y a {{n}} h"
+  },
+  "days": [
+    "Dim.",
+    "Lun.",
+    "Mar.",
+    "Mer.",
+    "Jeu.",
+    "Ven.",
+    "Sam."
+  ],
   "sourcesPage": {
     "title": "Méthodes et sources",
     "forecastTitle": "Prévisions météo",
@@ -62,5 +83,10 @@
     "limitsTitle": "Limites",
     "limitsBody": "Les prévisions sont celles d'un point par commune : dans les grandes communes, la pluie peut différer d'un quartier à l'autre. Les cumuls passés sont estimés par le modèle et ne remplacent pas un pluviomètre.",
     "lastUpdate": "Dernière mise à jour de votre commune : {{date}}"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "Cette adresse n'existe pas ou n'existe plus.",
+    "home": "Retour à l'accueil"
   }
 }

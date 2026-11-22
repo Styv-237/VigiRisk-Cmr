@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 /** Jetons du système de design VigiRisk (étape 1, variante A validée). Source unique des couleurs et rayons. */
 export const colors = {
   bg0: '#050B18',
@@ -29,13 +31,15 @@ export const space = { xs: 4, sm: 8, md: 12, lg: 16, xl: 24 } as const;
 /** Cibles tactiles minimales (WCAG / HIG). */
 export const MIN_TOUCH = 44;
 
+// Web : pile de repli pendant le chargement des polices (font-display: swap) ; mobile : nom exact de la police embarquée.
+const fallback = Platform.OS === 'web' ? ", system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" : '';
 export const fonts = {
-  thin: 'Inter_200ExtraLight',
-  light: 'Inter_300Light',
-  regular: 'Inter_400Regular',
-  medium: 'Inter_500Medium',
-  semibold: 'Inter_600SemiBold',
-  bold: 'Inter_700Bold',
+  thin: `Inter_200ExtraLight${fallback}`,
+  light: `Inter_300Light${fallback}`,
+  regular: `Inter_400Regular${fallback}`,
+  medium: `Inter_500Medium${fallback}`,
+  semibold: `Inter_600SemiBold${fallback}`,
+  bold: `Inter_700Bold${fallback}`,
 } as const;
 
 export const type = {

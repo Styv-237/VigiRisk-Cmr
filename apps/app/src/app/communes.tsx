@@ -17,12 +17,17 @@ export default function CommuneSearch() {
   const { setPlace } = usePlace();
   const [q, setQ] = useState('');
   const [drill, setDrill] = useState<{ title: string; items: AreaHit[] } | null>(null);
+  const [drillError, setDrillError] = useState(false);
   const search = useAreaSearch(q);
   const levelLabel = (l: number) => (l === 1 ? t('search.region') : l === 2 ? t('search.departement') : t('search.commune'));
 
   async function choose(hit: AreaHit) {
     if (hit.level < 3) {
-      setDrill({ title: hit.name, items: await communesUnder(hit.pcode) });
+      try {
+        setDrill({ title: hit.name, items: await communesUnder(hit.pcode) });
+      } catch {
+        setDrillError(true);
+      }
       return;
     }
     const ctx = hit.context ? { departement: hit.context.split(' · ')[0], region: hit.context.split(' · ')[1] } : await communeContext(hit.pcode);
@@ -50,7 +55,10 @@ export default function CommuneSearch() {
               <Icon name="search" size={18} color={colors.accent100} />
               <TextInput
                 value={q}
-                onChangeText={setQ}
+                onChangeText={(v) => {
+                  setQ(v);
+                  setDrillError(false);
+                }}
                 autoFocus
                 autoCorrect={false}
                 placeholder={t('search.placeholder')}
@@ -62,9 +70,18 @@ export default function CommuneSearch() {
             </View>
           </GlassCard>
         )}
+        {drillError && !drill && <Text style={[type.secondary, { marginTop: 12, color: colors.vigilance.yellow }]}>{t('search.error')}</Text>}
         {!drill && q.trim().length < 2 && <Text style={[type.secondary, { marginTop: 12 }]}>{t('search.hint')}</Text>}
         {!drill && search.isFetching && <ActivityIndicator color={colors.accent200} style={{ marginTop: 16 }} />}
         {!drill && search.isSuccess && items.length === 0 && <Text style={[type.secondary, { marginTop: 12 }]}>{t('search.empty', { q })}</Text>}
+        {!drill && search.isError && !search.isFetching && (
+          <View style={{ marginTop: 12, gap: 10 }} accessibilityLiveRegion="polite">
+            <Text style={[type.secondary, { color: colors.vigilance.yellow }]}>{t('search.error')}</Text>
+            <Pressable onPress={() => void search.refetch()} accessibilityRole="button" style={styles.retry}>
+              <Text style={type.bodyStrong}>{t('search.retry')}</Text>
+            </Pressable>
+          </View>
+        )}
         <FlatList
           data={items}
           keyExtractor={(i) => i.pcode}
@@ -94,5 +111,6 @@ const styles = StyleSheet.create({
   searchRow: { flexDirection: 'row', alignItems: 'center', gap: 10, paddingHorizontal: 16, minHeight: 52 },
   // Focus visible mais sobre (WCAG 2.4.7) : liseré glacier à la place du contour par défaut du navigateur.
   input: { flex: 1, fontFamily: fonts.regular, fontSize: 16, color: colors.text, minHeight: 44, outlineColor: colors.accent300, outlineWidth: 1, borderRadius: 10, paddingHorizontal: 6 },
+  retry: { minHeight: MIN_TOUCH, borderRadius: 22, borderWidth: 1, borderColor: colors.glassBorder, alignItems: 'center', justifyContent: 'center', alignSelf: 'flex-start', paddingHorizontal: 18 },
   row: { minHeight: 56, flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: colors.divider, gap: 8 },
 });

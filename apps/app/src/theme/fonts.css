@@ -1,0 +1,8 @@
+/* Inter (SIL Open Font License 1.1, voir /fonts/LICENSE-Inter-OFL.txt), sous-ensemble latin en WOFF2 pour le web.
+   Les noms de famille sont ceux utilisés sur mobile : les jetons de typographie restent identiques. */
+@font-face { font-family: 'Inter_200ExtraLight'; src: url('/fonts/Inter-200ExtraLight.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter_300Light'; src: url('/fonts/Inter-300Light.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter_400Regular'; src: url('/fonts/Inter-400Regular.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter_500Medium'; src: url('/fonts/Inter-500Medium.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter_600SemiBold'; src: url('/fonts/Inter-600SemiBold.woff2') format('woff2'); font-display: swap; }
+@font-face { font-family: 'Inter_700Bold'; src: url('/fonts/Inter-700Bold.woff2') format('woff2'); font-display: swap; }

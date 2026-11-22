@@ -54,8 +54,11 @@ export default function HomeScreen() {
           {DEMO_MODE && <Text style={styles.demo}>{t('demo')}</Text>}
           {!place ? (
             <ChoosePlace />
-          ) : q.isPending ? (
-            <ActivityIndicator color={colors.accent200} style={{ marginTop: 120 }} />
+          ) : q.isPending && q.fetchStatus !== 'idle' ? (
+            <View style={{ marginTop: 120, alignItems: 'center', gap: 12 }} accessibilityLiveRegion="polite">
+              <ActivityIndicator color={colors.accent200} />
+              <Text style={type.secondary}>{t('home.loading')}</Text>
+            </View>
           ) : q.data ? (
             <Forecast data={q.data} lang={lang} />
           ) : (
@@ -109,7 +112,8 @@ function Forecast({ data, lang }: { data: CachedForecast; lang: 'fr' | 'en' }) {
   const days = nextDays(f, now, 10);
   const totals = rainTotals(f, now);
   const headline = rainHeadline(f, now, lang);
-  const fresh = freshness(data.fetchedAt, now);
+  const fetchedAt = new Date(data.fetchedAt);
+  const fresh = freshness(fetchedAt, now);
   const weekMin = Math.min(...days.map((d) => d.min ?? Infinity));
   const weekMax = Math.max(...days.map((d) => d.max ?? -Infinity));
 
@@ -125,14 +129,14 @@ function Forecast({ data, lang }: { data: CachedForecast; lang: 'fr' | 'en' }) {
 
       {fresh === 'stale' && (
         <GlassCard style={[styles.card, { borderColor: 'rgba(245,196,81,0.4)' }]}>
-          <Text style={type.secondary}>{t('home.stale', { ago: ago(data.fetchedAt) })}</Text>
+          <Text style={type.secondary}>{t('home.stale', { ago: ago(fetchedAt) })}</Text>
         </GlassCard>
       )}
 
       <GlassCard style={styles.card}>
         {!!headline && <Text style={[type.secondary, { color: colors.text, opacity: 0.85 }]}>{headline}</Text>}
         <View style={styles.divider} />
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }} accessibilityLabel={t('home.hourly')}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ gap: 6 }} accessibilityLabel={t('home.hourly')} focusable tabIndex={0}>
           {hours.map((h, i) => {
             const w = describeWeather(h.weatherCode, lang);
             return (
@@ -208,7 +212,7 @@ function Forecast({ data, lang }: { data: CachedForecast; lang: 'fr' | 'en' }) {
 
       <Link href="/sources" asChild>
         <Pressable accessibilityRole="link" style={styles.sourceLink}>
-          <Text style={type.small}>{t('home.source', { ago: ago(data.fetchedAt) })}</Text>
+          <Text style={type.small}>{t('home.source', { ago: ago(fetchedAt) })}</Text>
           <Text style={[type.small, { color: colors.accent200 }]}>{t('home.sources')} →</Text>
         </Pressable>
       </Link>
