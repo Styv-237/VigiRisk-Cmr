@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fil citoyen — variante A</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050B18}
+a{color:#9FD8FF;text-decoration:none}a:hover{color:#CDEBFF}
+.glass{background:rgba(160,210,255,.08);border:1px solid rgba(205,235,255,.16);border-radius:24px;backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 30px rgba(0,0,0,.25)}
+.solid{background:#12264A;backdrop-filter:none;-webkit-backdrop-filter:none}
+.label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(205,235,255,.78);margin:0}
+.sec{color:rgba(205,235,255,.78)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.demo{font-size:11px;font-weight:600;color:#F5C451;border:1px solid rgba(245,196,81,.5);border-radius:6px;padding:1px 5px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:rgba(205,235,255,.78);min-width:56px;min-height:44px;justify-content:center}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;color:#06142B;background:linear-gradient(160deg,#CDEBFF,#5BB8F5)}
+.act{min-height:44px;border-radius:22px;padding:0 14px;display:inline-flex;align-items:center;gap:8px;font:600 14px Inter,sans-serif;color:rgba(255,255,255,.93);background:rgba(160,210,255,.08);border:1px solid rgba(205,235,255,.16)}
+</style>
+</helmet>
+<div style="width:390px;height:1240px;box-sizing:border-box;position:relative;overflow:hidden;background:linear-gradient(180deg,#0B1A33 0%,#050B18 100%);font-family:Inter,system-ui,sans-serif;color:rgba(255,255,255,.93)">
+<div aria-hidden="true" style="position:absolute;left:-100px;top:-80px;width:340px;height:340px;border-radius:50%;background:#5BB8F5;opacity:.22;filter:blur(80px)"></div>
+<div aria-hidden="true" style="position:absolute;right:-140px;top:560px;width:340px;height:340px;border-radius:50%;background:#7CC7FF;opacity:.12;filter:blur(90px)"></div>
+
+<main style="position:relative;padding:56px 16px 140px;display:flex;flex-direction:column;gap:14px">
+<header style="display:flex;justify-content:space-between;align-items:flex-start">
+<div style="display:flex;flex-direction:column;gap:4px">
+<h1 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-.01em">Fil citoyen</h1>
+<p class="sec" style="margin:0;font-size:14px">Yaoundé VII et alentours · rayon 5 km</p>
+</div>
+<button type="button" aria-label="Filtrer le fil" class="{{g}}" style="width:48px;height:48px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.93)"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg></button>
+</header>
+
+<div class="{{g}}" role="tablist" style="border-radius:18px;padding:4px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px">
+<button type="button" role="tab" aria-selected="true" style="min-height:44px;border:0;border-radius:14px;background:rgba(205,235,255,.16);font:600 14px Inter,sans-serif;color:rgba(255,255,255,.93)">À proximité</button>
+<button type="button" role="tab" aria-selected="false" style="min-height:44px;border:0;border-radius:14px;background:transparent;font:500 14px Inter,sans-serif;color:rgba(205,235,255,.78)">Abonnements</button>
+<button type="button" role="tab" aria-selected="false" style="min-height:44px;border:0;border-radius:14px;background:transparent;font:500 14px Inter,sans-serif;color:rgba(205,235,255,.78)">Officiel</button>
+</div>
+
+<a href="#" class="{{g}}" style="border-radius:20px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;border-color:rgba(245,196,81,.4);color:inherit">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F5C451" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M12 17v5M5 17h14l-2-4V5H7v8z"/></svg>
+<span style="font-size:14px;line-height:1.4"><strong style="color:#F5C451">Épinglé · Officiel</strong> — Bulletin ONACC : risque d'inondation dans le Centre jusqu'au 30 nov. <span class="demo">Exemple</span></span>
+</a>
+
+<article class="{{g}}" style="padding:14px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:10px;align-items:center">
+<span class="av" aria-hidden="true">AN</span>
+<div style="display:flex;flex-direction:column;gap:2px;min-width:0">
+<div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><strong style="font-size:15px">Aïcha N.</strong><span class="chip" style="background:rgba(124,199,255,.16);color:#CDEBFF;font-size:11px"><svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/></svg>Observatrice CEEREMA</span></div>
+<span class="sec" style="font-size:13px">il y a 12 min · Oyom-Abang · zone ±150 m</span>
+</div>
+</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<span class="chip" style="background:rgba(255,159,67,.16);color:#FFB877">Inondation</span>
+<span class="chip" style="background:rgba(74,222,128,.16);color:#4ADE80"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Vérifié</span>
+<span class="chip" style="background:rgba(205,235,255,.10);color:#CDEBFF">≈ 45 cm · genou</span>
+</div>
+<p style="margin:0;font-size:15px;line-height:1.45">Le ruisseau a débordé sur la route du marché. L'eau arrive au genou, les motos font demi-tour. <span class="demo">Exemple</span></p>
+<div role="img" aria-label="Photo de l'incident (emplacement)" style="height:170px;border-radius:18px;position:relative;overflow:hidden;background:linear-gradient(180deg,#1E3D66 0%,#14325A 55%,#2A5A8A 56%,#1B436E 100%);border:1px solid rgba(205,235,255,.14)">
+<span class="chip" style="position:absolute;left:10px;top:10px;background:rgba(5,11,24,.7);color:#CDEBFF;font-size:11px">Photo · métadonnées supprimées</span>
+</div>
+<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+<button type="button" class="act"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><path d="M9 9l2 2 4-4"/></svg>Je confirme · 14</button>
+<button type="button" class="act" aria-label="5 commentaires"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>5</button>
+<span style="margin-left:auto;font-size:13px;font-weight:600;color:#4ADE80;text-align:right">Transmis à la mairie</span>
+</div>
+</article>
+
+<article class="{{g}}" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:10px;align-items:center">
+<span class="av" aria-hidden="true" style="background:linear-gradient(160deg,#E6F5FF,#9FD8FF)">PM</span>
+<div style="display:flex;flex-direction:column;gap:2px;flex:1;min-width:0">
+<span style="font-size:15px"><strong>Paul M.</strong> <span class="sec" style="font-size:13px">· Contributeur fiable</span></span>
+<span class="sec" style="font-size:13px">il y a 40 min · Nkolbisson</span>
+</div>
+<span class="chip" style="background:rgba(245,196,81,.16);color:#F5C451">En vérification</span>
+</div>
+<div style="display:flex;gap:10px;align-items:flex-start">
+<span class="chip" style="background:rgba(205,235,255,.10);color:#CDEBFF">Caniveau bouché</span>
+<p style="margin:0;font-size:15px;line-height:1.4">Déchets accumulés devant l'école, l'eau stagne. <span class="demo">Exemple</span></p>
+</div>
+<div style="display:flex;gap:8px">
+<button type="button" class="act">Je confirme · 3</button>
+<button type="button" class="act">Plus d'actualité</button>
+</div>
+</article>
+
+<article class="{{g}}" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:10px;align-items:center">
+<span class="av" aria-hidden="true" style="background:linear-gradient(160deg,#CDEBFF,#7CC7FF)">JK</span>
+<div style="display:flex;flex-direction:column;gap:2px">
+<span style="font-size:15px"><strong>Jean-Paul K.</strong> <span class="sec" style="font-size:13px">· Question</span></span>
+<span class="sec" style="font-size:13px">il y a 1 h · Groupe Nkolbisson</span>
+</div>
+</div>
+<p style="margin:0;font-size:15px;line-height:1.4">La descente vers le pont est-elle praticable ce soir ? <span class="demo">Exemple</span></p>
+<span class="sec" style="font-size:13px">2 réponses · 6 trouvent cela utile</span>
+</article>
+
+<p class="sec" style="margin:0;font-size:12px;text-align:center">Information indicative. En cas de danger, suivez les consignes des autorités.</p>
+</main>
+
+<nav aria-label="Navigation principale" style="position:absolute;left:12px;right:12px;bottom:18px;height:72px;border-radius:28px;background:rgba(160,210,255,.12);border:1px solid rgba(205,235,255,.22);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 40px rgba(0,0,0,.45);display:flex;justify-content:space-around;align-items:center;padding:0 6px">
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.3 4.5 4.5 0 0 0 7 18z"/></svg>Météo</a>
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11v8H8l-4 3z"/><path d="M15 9h5v8l-3-2h-6v-2"/></svg>Groupes</a>
+<a href="#" aria-label="Signaler un incident" style="width:60px;height:60px;border-radius:50%;margin-top:-6px;display:flex;align-items:center;justify-content:center;color:#06142B;background:radial-gradient(circle at 50% 30%,#F2FAFF,#9FD8FF 70%);box-shadow:0 0 28px rgba(124,199,255,.65),inset 0 1px 0 #fff"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></a>
+<a href="#" class="tab" aria-current="page" style="color:#9FD8FF;font-weight:600"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c3 0 5 2 5 5"/></svg>Fil citoyen</a>
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profil</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"reduceTransparency":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+renderVals() {
+return { g: this.props.reduceTransparency ? 'glass solid' : 'glass' };
+}
+}
+</script>
+</body>
+</html>

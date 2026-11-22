@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Accueil — variante A</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050B18}
+a{color:#9FD8FF;text-decoration:none}a:hover{color:#CDEBFF}
+.glass{background:rgba(160,210,255,.08);border:1px solid rgba(205,235,255,.16);border-radius:24px;backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 30px rgba(0,0,0,.25)}
+.solid{background:#12264A;backdrop-filter:none;-webkit-backdrop-filter:none}
+.label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(205,235,255,.78);margin:0;display:flex;align-items:center;gap:6px}
+.sec{color:rgba(205,235,255,.78)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.demo{font-size:11px;font-weight:600;color:#F5C451;border:1px solid rgba(245,196,81,.5);border-radius:6px;padding:1px 5px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:rgba(205,235,255,.78);min-width:56px;min-height:44px;justify-content:center}
+.hr{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:14px;min-width:40px}
+.day{display:grid;grid-template-columns:52px 28px 40px 1fr 34px;align-items:center;gap:8px;font-size:15px;min-height:44px}
+</style>
+</helmet>
+<div style="width:390px;height:1240px;box-sizing:border-box;position:relative;overflow:hidden;background:linear-gradient(180deg,#0E2242 0%,#0B1A33 35%,#050B18 100%);font-family:Inter,system-ui,sans-serif;color:rgba(255,255,255,.93)">
+<div aria-hidden="true" style="position:absolute;left:-90px;top:-60px;width:320px;height:320px;border-radius:50%;background:#5BB8F5;opacity:.28;filter:blur(70px)"></div>
+<div aria-hidden="true" style="position:absolute;right:-120px;top:420px;width:320px;height:320px;border-radius:50%;background:#7CC7FF;opacity:.14;filter:blur(80px)"></div>
+<div aria-hidden="true" style="position:absolute;inset:0;background:repeating-linear-gradient(105deg,rgba(205,235,255,0) 0 22px,rgba(205,235,255,.05) 22px 23px);opacity:.6"></div>
+
+<main style="position:relative;padding:56px 16px 140px;display:flex;flex-direction:column;gap:14px">
+<section style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;padding-bottom:8px">
+<p class="label" style="color:#9FD8FF"><svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Ma position</p>
+<h1 style="margin:4px 0 0;font-size:34px;font-weight:500;letter-spacing:-.01em">Nkolbisson</h1>
+<p class="sec" style="margin:0;font-size:15px">Yaoundé VII · Centre</p>
+<p style="margin:4px 0 0;font-size:104px;font-weight:200;line-height:1;letter-spacing:-.04em">22°</p>
+<p style="margin:0;font-size:19px;font-weight:500">Averses orageuses</p>
+<p class="sec" style="margin:0;font-size:15px">Max 27° · Min 19° <span class="demo">Exemple</span></p>
+</section>
+
+<a href="#" class="{{g}}" style="border-radius:24px;padding:14px;display:flex;gap:12px;align-items:center;border-color:rgba(245,196,81,.35);color:inherit">
+<span aria-hidden="true" style="flex:none;width:44px;height:44px;border-radius:14px;background:rgba(245,196,81,.16);color:#F5C451;display:flex;align-items:center;justify-content:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg></span>
+<span style="display:flex;flex-direction:column;gap:3px;min-width:0">
+<span style="display:flex;gap:6px;align-items:center"><span class="chip" style="background:#F5C451;color:#1A1405">OFFICIEL · ONACC</span><span class="demo">Exemple</span></span>
+<span style="font-size:15px;font-weight:600">Risque d'inondation — région du Centre</span>
+<span class="sec" style="font-size:13px">Bulletin décadaire · PDF source · 21–30 nov.</span>
+</span>
+</a>
+
+<section class="{{g}}" style="padding:14px 14px 16px;display:flex;flex-direction:column;gap:12px">
+<p class="sec" style="margin:0;font-size:14px;line-height:1.4">Pluie forte attendue vers 17 h. Cumul prévu sur 24 h : 38 mm.</p>
+<div style="height:1px;background:rgba(205,235,255,.12)"></div>
+<div style="display:flex;justify-content:space-between">
+<div class="hr"><span style="font-weight:600">Maint.</span><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 7 3.8 3.8 0 0 0 7 15z"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2"/></svg><span style="font-size:12px;font-weight:600;color:#7CC7FF">40 %</span><span style="font-size:18px">22°</span></div>
+<div class="hr"><span>15 h</span><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 7 3.8 3.8 0 0 0 7 15z"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2"/></svg><span style="font-size:12px;font-weight:600;color:#7CC7FF">55 %</span><span style="font-size:18px">24°</span></div>
+<div class="hr"><span>16 h</span><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 7 3.8 3.8 0 0 0 7 15z"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2"/></svg><span style="font-size:12px;font-weight:600;color:#7CC7FF">70 %</span><span style="font-size:18px">23°</span></div>
+<div class="hr"><span>17 h</span><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F5C451" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 14h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 6 3.8 3.8 0 0 0 7 14z"/><path d="M12 14l-2 4h3l-2 4"/></svg><span style="font-size:12px;font-weight:600;color:#7CC7FF">90 %</span><span style="font-size:18px">21°</span></div>
+<div class="hr"><span>18 h</span><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 7 3.8 3.8 0 0 0 7 15z"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2"/></svg><span style="font-size:12px;font-weight:600;color:#7CC7FF">80 %</span><span style="font-size:18px">20°</span></div>
+<div class="hr"><span>19 h</span><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 7 3.8 3.8 0 0 0 7 15z"/><path d="M9 18l-1 2M13 18l-1 2"/></svg><span style="font-size:12px;font-weight:600;color:#7CC7FF">50 %</span><span style="font-size:18px">20°</span></div>
+</div>
+</section>
+
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+<a href="#" class="{{g}}" style="padding:14px;display:flex;flex-direction:column;gap:8px;color:inherit">
+<p class="label"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9c3-2 6 2 9 0s6-2 9 0M3 15c3-2 6 2 9 0s6-2 9 0"/></svg>Vigilance crues</p>
+<span style="font-size:24px;font-weight:600;color:#FF9F43">Orange</span>
+<span class="sec" style="font-size:13px;line-height:1.35">Sanaga à Nachtigal · débit prévu au-dessus du P98</span>
+<span style="display:flex;gap:4px"><span style="flex:1;height:5px;border-radius:3px;background:#FF9F43"></span><span style="flex:1;height:5px;border-radius:3px;background:#FF9F43"></span><span style="flex:1;height:5px;border-radius:3px;background:#FF9F43"></span><span style="flex:1;height:5px;border-radius:3px;background:rgba(205,235,255,.16)"></span></span>
+<span class="chip" style="align-self:flex-start;border:1px dashed rgba(159,216,255,.7);color:#CDEBFF">Indicatif · GloFAS</span>
+</a>
+<a href="#" class="{{g}}" style="padding:14px;display:flex;flex-direction:column;gap:8px;color:inherit">
+<p class="label"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c3 0 5 2 5 5"/></svg>Près de vous</p>
+<span style="font-size:24px;font-weight:600">3 signalements</span>
+<span class="sec" style="font-size:13px;line-height:1.35">2 vérifiés · le dernier il y a 12 min à Oyom-Abang</span>
+<span style="font-size:13px;font-weight:600;color:#9FD8FF;margin-top:auto">Voir le fil →</span>
+</a>
+</div>
+
+<section class="{{g}}" style="padding:14px;display:flex;flex-direction:column;gap:2px">
+<p class="label" style="margin-bottom:6px">Prévisions sur 10 jours</p>
+<div class="day"><span style="font-weight:600">Auj.</span><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round"><path d="M7 15h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 7 3.8 3.8 0 0 0 7 15z"/><path d="M9 18l-1 2M13 18l-1 2"/></svg><span class="sec" style="text-align:right">19°</span><span style="height:5px;border-radius:3px;background:linear-gradient(90deg,#7CC7FF,#F5C451);margin:0 10% 0 20%"></span><span>27°</span></div>
+<div class="day"><span>Dim.</span><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round"><path d="M7 15h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 7 3.8 3.8 0 0 0 7 15z"/><path d="M9 18l-1 2M13 18l-1 2M17 18l-1 2"/></svg><span class="sec" style="text-align:right">19°</span><span style="height:5px;border-radius:3px;background:linear-gradient(90deg,#7CC7FF,#9FD8FF);margin:0 25% 0 15%"></span><span>25°</span></div>
+<div class="day"><span>Lun.</span><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#CDEBFF" stroke-width="1.7" stroke-linecap="round"><circle cx="9" cy="9" r="3"/><path d="M9 3v1M3 9h1M4.8 4.8l.7.7"/><path d="M10 17h8a3 3 0 0 0 .4-6 4 4 0 0 0-7.5 1"/></svg><span class="sec" style="text-align:right">20°</span><span style="height:5px;border-radius:3px;background:linear-gradient(90deg,#9FD8FF,#F5C451);margin:0 5% 0 25%"></span><span>28°</span></div>
+<div class="day"><span>Mar.</span><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F5C451" stroke-width="1.7" stroke-linecap="round"><path d="M7 14h10a3.5 3.5 0 0 0 .5-7A5 5 0 0 0 7.8 6 3.8 3.8 0 0 0 7 14z"/><path d="M12 14l-2 4h3l-2 4"/></svg><span class="sec" style="text-align:right">19°</span><span style="height:5px;border-radius:3px;background:linear-gradient(90deg,#7CC7FF,#F5C451);margin:0 12% 0 18%"></span><span>26°</span></div>
+<p class="sec" style="margin:6px 0 0;font-size:11px">Open-Meteo · CC BY 4.0 · mis à jour il y a 42 min <span class="demo">Exemple</span></p>
+</section>
+
+<section class="{{g}}" style="padding:14px;display:flex;flex-direction:column;gap:10px">
+<p class="label">Cumuls de pluie</p>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;text-align:center">
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:26px;font-weight:300">12<span style="font-size:14px"> mm</span></span><span class="sec" style="font-size:12px">dernières 24 h</span></div>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:26px;font-weight:300">38<span style="font-size:14px"> mm</span></span><span class="sec" style="font-size:12px">prochaines 24 h</span></div>
+<div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:26px;font-weight:300">96<span style="font-size:14px"> mm</span></span><span class="sec" style="font-size:12px">7 jours</span></div>
+</div>
+</section>
+
+<p class="sec" style="margin:0;font-size:12px;text-align:center">Information indicative. En cas de danger, suivez les consignes des autorités.</p>
+</main>
+
+<nav aria-label="Navigation principale" style="position:absolute;left:12px;right:12px;bottom:18px;height:72px;border-radius:28px;background:rgba(160,210,255,.12);border:1px solid rgba(205,235,255,.22);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 40px rgba(0,0,0,.45);display:flex;justify-content:space-around;align-items:center;padding:0 6px">
+<a href="#" class="tab" aria-current="page" style="color:#9FD8FF;font-weight:600"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.3 4.5 4.5 0 0 0 7 18z"/></svg>Météo</a>
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11v8H8l-4 3z"/><path d="M15 9h5v8l-3-2h-6v-2"/></svg>Groupes</a>
+<a href="#" aria-label="Signaler un incident" style="width:60px;height:60px;border-radius:50%;margin-top:-6px;display:flex;align-items:center;justify-content:center;color:#06142B;background:radial-gradient(circle at 50% 30%,#F2FAFF,#9FD8FF 70%);box-shadow:0 0 28px rgba(124,199,255,.65),inset 0 1px 0 #fff"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></a>
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c3 0 5 2 5 5"/></svg>Fil citoyen</a>
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profil</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"reduceTransparency":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+renderVals() {
+return { g: this.props.reduceTransparency ? 'glass solid' : 'glass' };
+}
+}
+</script>
+</body>
+</html>

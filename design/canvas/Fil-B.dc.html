@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Fil citoyen — variante B</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050B18}
+a{color:#9FD8FF;text-decoration:none}a:hover{color:#CDEBFF}
+.glass{background:rgba(160,210,255,.08);border:1px solid rgba(205,235,255,.16);border-radius:24px;backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 30px rgba(0,0,0,.25)}
+.solid{background:#12264A;backdrop-filter:none;-webkit-backdrop-filter:none}
+.label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(205,235,255,.78);margin:0}
+.sec{color:rgba(205,235,255,.78)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;padding:4px 9px;border-radius:999px;white-space:nowrap}
+.demo{font-size:11px;font-weight:600;color:#F5C451;border:1px solid rgba(245,196,81,.5);border-radius:6px;padding:1px 5px}
+.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:rgba(205,235,255,.78);min-width:56px;min-height:44px;justify-content:center}
+.fchip{min-height:40px;padding:0 14px;border-radius:20px;display:inline-flex;align-items:center;font:500 14px Inter,sans-serif;white-space:nowrap;color:rgba(205,235,255,.9);background:rgba(160,210,255,.08);border:1px solid rgba(205,235,255,.16)}
+.map{flex:none;width:92px;height:92px;border-radius:16px;position:relative;overflow:hidden;background:#0A1628;border:1px solid rgba(205,235,255,.14)}
+.step{flex:1;height:4px;border-radius:2px}
+</style>
+</helmet>
+<div style="width:390px;height:1240px;box-sizing:border-box;position:relative;overflow:hidden;background:linear-gradient(180deg,#0B1A33 0%,#050B18 100%);font-family:Inter,system-ui,sans-serif;color:rgba(255,255,255,.93)">
+<div aria-hidden="true" style="position:absolute;right:-90px;top:-60px;width:320px;height:320px;border-radius:50%;background:#5BB8F5;opacity:.22;filter:blur(80px)"></div>
+
+<main style="position:relative;padding:56px 16px 140px;display:flex;flex-direction:column;gap:14px">
+<header style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;justify-content:space-between;align-items:center">
+<h1 style="margin:0;font-size:34px;font-weight:700;letter-spacing:-.01em">Fil citoyen</h1>
+<button type="button" class="{{g}}" style="min-height:44px;border-radius:22px;padding:0 14px;font:600 14px Inter,sans-serif;color:rgba(255,255,255,.93);display:flex;align-items:center;gap:6px"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9FD8FF" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/></svg>5 km</button>
+</div>
+<div style="display:flex;gap:18px;border-bottom:1px solid rgba(205,235,255,.12)" role="tablist">
+<button type="button" role="tab" aria-selected="true" style="min-height:44px;background:none;border:0;border-bottom:2px solid #9FD8FF;padding:0 2px;font:600 15px Inter,sans-serif;color:rgba(255,255,255,.93)">À proximité</button>
+<button type="button" role="tab" aria-selected="false" style="min-height:44px;background:none;border:0;padding:0 2px;font:500 15px Inter,sans-serif;color:rgba(205,235,255,.78)">Abonnements</button>
+<button type="button" role="tab" aria-selected="false" style="min-height:44px;background:none;border:0;padding:0 2px;font:500 15px Inter,sans-serif;color:rgba(205,235,255,.78)">Officiel</button>
+</div>
+<div style="display:flex;gap:8px;overflow:hidden">
+<button type="button" class="fchip" style="background:rgba(205,235,255,.18);color:#fff;font-weight:600">Tout</button>
+<button type="button" class="fchip">Inondation</button>
+<button type="button" class="fchip">Caniveau</button>
+<button type="button" class="fchip">Route</button>
+</div>
+</header>
+
+<div class="{{g}}" style="border-radius:20px;padding:12px 14px;display:flex;gap:10px;align-items:center;border-color:rgba(245,196,81,.4)">
+<span class="chip" style="background:#F5C451;color:#1A1405;font-size:11px">OFFICIEL</span>
+<span style="font-size:14px;flex:1">Mairie Yaoundé VII : curage des caniveaux samedi 8 h <span class="demo">Exemple</span></span>
+</div>
+
+<p class="label" style="padding-top:4px">Incidents en cours · 3</p>
+
+<article class="{{g}}" style="padding:12px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:12px">
+<div class="map" role="img" aria-label="Mini-carte : zone approximative de 150 mètres à Oyom-Abang">
+<div style="position:absolute;left:-10px;top:52px;width:120px;height:3px;background:#5BB8F5;transform:rotate(-18deg);opacity:.8"></div>
+<div style="position:absolute;left:30px;top:0;width:2px;height:92px;background:rgba(205,235,255,.18)"></div>
+<div style="position:absolute;left:0;top:28px;width:92px;height:2px;background:rgba(205,235,255,.14)"></div>
+<div style="position:absolute;left:24px;top:24px;width:44px;height:44px;border-radius:50%;border:1.5px dashed #FFB877;background:rgba(255,159,67,.22)"></div>
+<div style="position:absolute;left:42px;top:42px;width:8px;height:8px;border-radius:50%;background:#FF9F43"></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px;min-width:0;flex:1">
+<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip" style="background:rgba(255,159,67,.16);color:#FFB877;font-size:11px">Inondation</span><span class="chip" style="background:rgba(74,222,128,.16);color:#4ADE80;font-size:11px">Vérifié</span></div>
+<strong style="font-size:16px;line-height:1.25">Route du marché inondée, ≈ 45 cm</strong>
+<span class="sec" style="font-size:13px">Oyom-Abang · 4 signalements · 14 confirmations</span>
+</div>
+</div>
+<div style="display:flex;gap:8px;align-items:center;padding:8px 10px;border-radius:14px;background:rgba(74,222,128,.08)">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4ADE80" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+<span style="font-size:13px"><strong>L'eau baisse</strong> <span class="sec">· mise à jour il y a 8 min</span></span>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;gap:4px" aria-hidden="true"><span class="step" style="background:#9FD8FF"></span><span class="step" style="background:#9FD8FF"></span><span class="step" style="background:#9FD8FF"></span><span class="step" style="background:#9FD8FF"></span><span class="step" style="background:rgba(205,235,255,.16)"></span><span class="step" style="background:rgba(205,235,255,.16)"></span></div>
+<span class="sec" style="font-size:12px">Étape 4 sur 6 : <strong style="color:#CDEBFF">Transmis à la mairie</strong> <span class="demo">Exemple</span></span>
+</div>
+<div style="display:flex;gap:8px">
+<button type="button" class="fchip" style="flex:1;justify-content:center;font-weight:600;min-height:44px">Je confirme</button>
+<button type="button" class="fchip" style="flex:1;justify-content:center;min-height:44px">Plus d'actualité</button>
+<button type="button" class="fchip" aria-label="Suivre l'incident" style="min-height:44px;width:44px;padding:0;justify-content:center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-6-4-6 4z"/></svg></button>
+</div>
+</article>
+
+<article class="{{g}}" style="padding:12px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;gap:12px">
+<div class="map" role="img" aria-label="Mini-carte : zone approximative de 150 mètres à Nkolbisson">
+<div style="position:absolute;left:60px;top:0;width:2px;height:92px;background:rgba(205,235,255,.18)"></div>
+<div style="position:absolute;left:0;top:60px;width:92px;height:2px;background:rgba(205,235,255,.14)"></div>
+<div style="position:absolute;left:38px;top:20px;width:44px;height:44px;border-radius:50%;border:1.5px dashed #F5C451;background:rgba(245,196,81,.18)"></div>
+<div style="position:absolute;left:56px;top:38px;width:8px;height:8px;border-radius:50%;background:#F5C451"></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:5px;min-width:0;flex:1">
+<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="chip" style="background:rgba(205,235,255,.10);color:#CDEBFF;font-size:11px">Caniveau bouché</span><span class="chip" style="background:rgba(245,196,81,.16);color:#F5C451;font-size:11px">En vérification</span></div>
+<strong style="font-size:16px;line-height:1.25">Déchets devant l'école, eau stagnante</strong>
+<span class="sec" style="font-size:13px">Nkolbisson · 1 signalement · 3 confirmations</span>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;gap:4px" aria-hidden="true"><span class="step" style="background:#9FD8FF"></span><span class="step" style="background:#9FD8FF"></span><span class="step" style="background:rgba(205,235,255,.16)"></span><span class="step" style="background:rgba(205,235,255,.16)"></span><span class="step" style="background:rgba(205,235,255,.16)"></span><span class="step" style="background:rgba(205,235,255,.16)"></span></div>
+<span class="sec" style="font-size:12px">Étape 2 sur 6 : <strong style="color:#CDEBFF">En vérification</strong> <span class="demo">Exemple</span></span>
+</div>
+</article>
+
+<article class="{{g}}" style="padding:12px 14px;display:flex;gap:12px;align-items:center">
+<span class="chip" style="background:rgba(205,235,255,.10);color:#CDEBFF;font-size:11px">Conseil</span>
+<span style="font-size:14px;line-height:1.35;flex:1">Avant les pluies, dégagez la grille devant votre portail. <span class="sec">· Groupe Nkolbisson</span> <span class="demo">Exemple</span></span>
+</article>
+
+<p class="sec" style="margin:0;font-size:12px;text-align:center">Information indicative. En cas de danger, suivez les consignes des autorités.</p>
+</main>
+
+<nav aria-label="Navigation principale" style="position:absolute;left:12px;right:12px;bottom:18px;height:72px;border-radius:28px;background:rgba(160,210,255,.12);border:1px solid rgba(205,235,255,.22);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 40px rgba(0,0,0,.45);display:flex;justify-content:space-around;align-items:center;padding:0 6px">
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18h10a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.1 9.3 4.5 4.5 0 0 0 7 18z"/></svg>Météo</a>
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h11v8H8l-4 3z"/><path d="M15 9h5v8l-3-2h-6v-2"/></svg>Groupes</a>
+<a href="#" aria-label="Signaler un incident" style="width:60px;height:60px;border-radius:50%;margin-top:-6px;display:flex;align-items:center;justify-content:center;color:#06142B;background:radial-gradient(circle at 50% 30%,#F2FAFF,#9FD8FF 70%);box-shadow:0 0 28px rgba(124,199,255,.65),inset 0 1px 0 #fff"><svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></a>
+<a href="#" class="tab" aria-current="page" style="color:#9FD8FF;font-weight:600"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14c3 0 5 2 5 5"/></svg>Fil citoyen</a>
+<a href="#" class="tab"><svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Profil</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"reduceTransparency":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1240}}'>
+class Component extends DCLogic {
+renderVals() {
+return { g: this.props.reduceTransparency ? 'glass solid' : 'glass' };
+}
+}
+</script>
+</body>
+</html>

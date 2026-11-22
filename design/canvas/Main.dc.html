@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Système de design VigiRisk</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#050B18}
+a{color:#9FD8FF}a:hover{color:#CDEBFF}
+.glass{background:rgba(160,210,255,.08);border:1px solid rgba(205,235,255,.16);border-radius:24px;backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 10px 30px rgba(0,0,0,.25)}
+.label{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(205,235,255,.78);margin:0}
+.sec{color:rgba(205,235,255,.78)}
+.sw{width:100%;height:64px;border-radius:16px;border:1px solid rgba(205,235,255,.16)}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.mono{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:rgba(205,235,255,.78)}
+</style>
+</helmet>
+<div style="width:1280px;height:1360px;box-sizing:border-box;position:relative;overflow:hidden;background:linear-gradient(180deg,#0B1A33 0%,#050B18 75%);font-family:Inter,system-ui,sans-serif;color:rgba(255,255,255,.93);padding:56px 64px;display:flex;flex-direction:column;gap:36px">
+<div aria-hidden="true" style="position:absolute;left:-120px;top:-140px;width:520px;height:520px;border-radius:50%;background:#5BB8F5;opacity:.22;filter:blur(90px)"></div>
+<div aria-hidden="true" style="position:absolute;right:-160px;top:520px;width:560px;height:560px;border-radius:50%;background:#7CC7FF;opacity:.14;filter:blur(110px)"></div>
+
+<header style="position:relative;display:flex;justify-content:space-between;align-items:flex-end">
+<div style="display:flex;flex-direction:column;gap:6px">
+<p class="label">CEEREMA · Étape 1 · proposition</p>
+<h1 style="margin:0;font-size:48px;font-weight:300;letter-spacing:-.02em">VigiRisk Cameroun</h1>
+<p class="sec" style="margin:0;font-size:16px">Thème nuit par défaut · verre liquide · vigilance lisible sans la couleur</p>
+</div>
+<p class="sec" style="margin:0;font-size:13px;max-width:360px;text-align:right">Toutes les données affichées sur ce canevas sont des exemples de maquette, signalés « Exemple ».</p>
+</header>
+
+<section style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Fonds &amp; texte</p>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:#050B18"></div><span style="font-size:13px">bg.0</span><span class="mono">#050B18</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:#0B1A33"></div><span style="font-size:13px">bg.1</span><span class="mono">#0B1A33</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:rgba(255,255,255,.93)"></div><span style="font-size:13px">text.primary</span><span class="mono">#FFF · 93 %</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:rgba(205,235,255,.78)"></div><span style="font-size:13px">text.secondary</span><span class="mono">#CDEBFF · 78 %</span></div>
+</div>
+</div>
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Accents glacier</p>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:#CDEBFF"></div><span style="font-size:13px">accent.100</span><span class="mono">#CDEBFF</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:#9FD8FF"></div><span style="font-size:13px">accent.200</span><span class="mono">#9FD8FF</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:#7CC7FF"></div><span style="font-size:13px">accent.300</span><span class="mono">#7CC7FF</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><div class="sw" style="background:#5BB8F5"></div><span style="font-size:13px">accent.400</span><span class="mono">#5BB8F5</span></div>
+</div>
+</div>
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Vigilance — couleur + libellé + niveau</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;align-items:center;gap:12px"><span style="width:56px;font-weight:600;color:#4ADE80">Vert</span><div style="display:flex;gap:4px"><span style="width:22px;height:6px;border-radius:3px;background:#4ADE80"></span><span style="width:22px;height:6px;border-radius:3px;background:rgba(205,235,255,.16)"></span><span style="width:22px;height:6px;border-radius:3px;background:rgba(205,235,255,.16)"></span><span style="width:22px;height:6px;border-radius:3px;background:rgba(205,235,255,.16)"></span></div><span class="mono">#4ADE80 · niveau 1/4</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:56px;font-weight:600;color:#F5C451">Jaune</span><div style="display:flex;gap:4px"><span style="width:22px;height:6px;border-radius:3px;background:#F5C451"></span><span style="width:22px;height:6px;border-radius:3px;background:#F5C451"></span><span style="width:22px;height:6px;border-radius:3px;background:rgba(205,235,255,.16)"></span><span style="width:22px;height:6px;border-radius:3px;background:rgba(205,235,255,.16)"></span></div><span class="mono">#F5C451 · niveau 2/4</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:56px;font-weight:600;color:#FF9F43">Orange</span><div style="display:flex;gap:4px"><span style="width:22px;height:6px;border-radius:3px;background:#FF9F43"></span><span style="width:22px;height:6px;border-radius:3px;background:#FF9F43"></span><span style="width:22px;height:6px;border-radius:3px;background:#FF9F43"></span><span style="width:22px;height:6px;border-radius:3px;background:rgba(205,235,255,.16)"></span></div><span class="mono">#FF9F43 · niveau 3/4</span></div>
+<div style="display:flex;align-items:center;gap:12px"><span style="width:56px;font-weight:600;color:#FF5C5C">Rouge</span><div style="display:flex;gap:4px"><span style="width:22px;height:6px;border-radius:3px;background:#FF5C5C"></span><span style="width:22px;height:6px;border-radius:3px;background:#FF5C5C"></span><span style="width:22px;height:6px;border-radius:3px;background:#FF5C5C"></span><span style="width:22px;height:6px;border-radius:3px;background:#FF5C5C"></span></div><span class="mono">#FF5C5C · niveau 4/4</span></div>
+<p class="sec" style="margin:0;font-size:12px">« Pas de donnée » : segments vides + libellé gris, jamais vert par défaut.</p>
+</div>
+</div>
+</section>
+
+<section style="position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+<div class="glass" style="padding:24px;display:flex;flex-direction:column;gap:12px">
+<p class="label">Typographie · Inter</p>
+<div style="display:flex;align-items:flex-end;gap:24px">
+<span style="font-size:104px;font-weight:200;line-height:.9;letter-spacing:-.04em">22°</span>
+<div style="display:flex;flex-direction:column;gap:2px;padding-bottom:8px"><span class="mono">display.temp · 96–104 / 200</span><span class="mono">chiffres tabulaires</span></div>
+</div>
+<div style="font-size:34px;font-weight:600;letter-spacing:-.01em">Titre d'écran <span class="mono">34 / 600</span></div>
+<div style="font-size:20px;font-weight:600">Titre de carte <span class="mono">20 / 600</span></div>
+<div style="font-size:16px;font-weight:400">Texte courant, lisible sur verre <span class="mono">16 / 400</span></div>
+<div class="sec" style="font-size:14px">Texte secondaire, métadonnées <span class="mono">14 / 400</span></div>
+<p class="label">Étiquette de section <span class="mono" style="text-transform:none;letter-spacing:0">12 / 600 / +8 %</span></p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="position:relative;border-radius:24px;padding:24px;overflow:hidden;background:#0B1A33;border:1px solid rgba(205,235,255,.10)">
+<div aria-hidden="true" style="position:absolute;left:40px;top:10px;width:220px;height:220px;border-radius:50%;background:#5BB8F5;opacity:.45;filter:blur(50px)"></div>
+<div aria-hidden="true" style="position:absolute;right:30px;bottom:-60px;width:200px;height:200px;border-radius:50%;background:#9FD8FF;opacity:.25;filter:blur(50px)"></div>
+<p class="label" style="position:relative;margin-bottom:14px">Verre — 3 niveaux sur halo</p>
+<div style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px">
+<div style="border-radius:20px;padding:14px;background:rgba(160,210,255,.05);border:1px solid rgba(205,235,255,.12);backdrop-filter:blur(24px) saturate(150%);-webkit-backdrop-filter:blur(24px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.10)"><div style="font-weight:600">subtle</div><div class="mono">fond 5 % · flou 24</div></div>
+<div class="glass" style="border-radius:24px;padding:14px"><div style="font-weight:600">card</div><div class="mono">fond 8 % · flou 28</div></div>
+<div style="border-radius:28px;padding:14px;background:rgba(160,210,255,.12);border:1px solid rgba(205,235,255,.22);backdrop-filter:blur(30px) saturate(180%);-webkit-backdrop-filter:blur(30px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.2),0 12px 40px rgba(0,0,0,.35)"><div style="font-weight:600">chrome</div><div class="mono">fond 12 % · flou 30</div></div>
+</div>
+</div>
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:10px">
+<p class="label">Repli du verre (même rendu visuel, coût adapté)</p>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;font-size:13px">
+<div style="display:flex;flex-direction:column;gap:4px"><strong style="font-weight:600">iOS 26+</strong><span class="sec">GlassView natif</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><strong style="font-weight:600">iOS &lt; 26</strong><span class="sec">BlurView</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><strong style="font-weight:600">Android</strong><span class="sec">Teinte opaque, flou si appareil puissant</span></div>
+<div style="display:flex;flex-direction:column;gap:4px"><strong style="font-weight:600">Web</strong><span class="sec">backdrop-filter</span></div>
+</div>
+</div>
+</div>
+</section>
+
+<section style="position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Badges de source (forme ≠ couleur)</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span class="chip" style="background:#F5C451;color:#1A1405"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/></svg>OFFICIEL · ONACC</span>
+<span class="chip" style="border:1px dashed rgba(159,216,255,.7);color:#CDEBFF">Indicatif · modèle</span>
+<span class="chip" style="border:1px solid rgba(205,235,255,.35);color:#CDEBFF">Citoyen</span>
+</div>
+<p class="sec" style="margin:0;font-size:12px">Officiel = plein + bouclier · Indicatif = contour pointillé · Citoyen = contour simple.</p>
+</div>
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Cycle de vie d'un incident</p>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<span class="chip" style="background:rgba(205,235,255,.12);color:#CDEBFF">Signalé</span>
+<span class="chip" style="background:rgba(245,196,81,.16);color:#F5C451">En vérification</span>
+<span class="chip" style="background:rgba(74,222,128,.16);color:#4ADE80"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>Vérifié</span>
+<span class="chip" style="background:rgba(124,199,255,.16);color:#9FD8FF">Transmis</span>
+<span class="chip" style="background:rgba(124,199,255,.16);color:#9FD8FF">Pris en charge</span>
+<span class="chip" style="background:rgba(74,222,128,.10);color:#4ADE80">Résolu</span>
+<span class="chip" style="background:rgba(255,92,92,.14);color:#FF5C5C">Rejeté · motif</span>
+</div>
+</div>
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Boutons · cible ≥ 44 px</p>
+<div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+<button type="button" style="min-height:48px;padding:0 22px;border-radius:24px;border:0;font:600 15px Inter,sans-serif;color:#06142B;background:linear-gradient(180deg,#E6F5FF,#9FD8FF);box-shadow:0 0 24px rgba(124,199,255,.45),inset 0 1px 0 #fff">Publier</button>
+<button type="button" class="glass" style="min-height:48px;padding:0 20px;border-radius:24px;font:600 15px Inter,sans-serif;color:rgba(255,255,255,.93)">Je confirme</button>
+<button type="button" style="min-height:44px;padding:0 14px;border-radius:22px;border:1px dashed rgba(205,235,255,.4);background:transparent;font:500 14px Inter,sans-serif;color:#CDEBFF">Demander</button>
+</div>
+</div>
+</section>
+
+<section style="position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Hauteur d'eau estimée — repères corporels</p>
+<div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:34px;font-weight:300">45 cm</span><span class="sec">· genou</span></div>
+<div style="position:relative;height:28px">
+<div style="position:absolute;left:0;right:0;top:12px;height:4px;border-radius:2px;background:rgba(205,235,255,.16)"></div>
+<div style="position:absolute;left:0;width:38%;top:12px;height:4px;border-radius:2px;background:#9FD8FF"></div>
+<div style="position:absolute;left:38%;top:2px;width:24px;height:24px;margin-left:-12px;border-radius:50%;background:#E6F5FF;box-shadow:0 0 14px rgba(124,199,255,.7)"></div>
+</div>
+<div class="sec" style="display:flex;justify-content:space-between;font-size:12px"><span>0</span><span>Cheville · 15</span><span>Genou · 45</span><span>Taille · 100</span><span>&gt; 120 cm</span></div>
+</div>
+<div class="glass" style="padding:20px;display:flex;flex-direction:column;gap:14px">
+<p class="label">Contrôles &amp; mentions permanentes</p>
+<div class="glass" style="border-radius:18px;padding:4px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;font-size:14px;text-align:center">
+<span style="padding:10px 0;border-radius:14px;background:rgba(205,235,255,.16);font-weight:600">À proximité</span>
+<span class="sec" style="padding:10px 0">Abonnements</span>
+<span class="sec" style="padding:10px 0">Officiel</span>
+</div>
+<p class="sec" style="margin:0;font-size:12px;display:flex;gap:6px;align-items:center"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16v.5"/></svg>Information indicative. En cas de danger, suivez les consignes des autorités.</p>
+<p class="sec" style="margin:0;font-size:12px">Sources sous chaque donnée : « Open-Meteo · CC BY 4.0 », « Copernicus Emergency Management Service ».</p>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":1360}}'>
+class Component extends DCLogic {
+renderVals() { return {}; }
+}
+</script>
+</body>
+</html>
