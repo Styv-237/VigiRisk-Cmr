@@ -183,6 +183,7 @@ export function rainIntensity(mmPerHour: number | null): RainIntensity {
 }
 
 /**
+ * Typographie française : espaces insécables avant « : » et entre nombre et unité.
  * Phrase de synthèse des 12 prochaines heures, à la manière de l'app Météo :
  * « Pluie forte attendue vers 17 h. Cumul prévu sur 24 h : 38 mm. »
  */
@@ -201,7 +202,7 @@ export function rainHeadline(f: NormalizedForecast, now: Date, lang: Lang = 'fr'
   const intensity = rainIntensity(peak?.precipitation ?? null);
   const total = totals.next24h;
   const totalText =
-    total == null ? '' : lang === 'fr' ? ` Cumul prévu sur 24 h : ${formatMm(total, lang)}.` : ` Expected 24 h total: ${formatMm(total, lang)}.`;
+    total == null ? '' : lang === 'fr' ? ` Cumul prévu sur 24\u00a0h\u00a0: ${formatMm(total, lang)}.` : ` Expected 24\u00a0h total: ${formatMm(total, lang)}.`;
   if (intensity === 'none' || peak == null) {
     return (lang === 'fr' ? 'Pas de pluie significative prévue dans les 12 prochaines heures.' : 'No significant rain expected in the next 12 hours.') + totalText;
   }
@@ -209,14 +210,15 @@ export function rainHeadline(f: NormalizedForecast, now: Date, lang: Lang = 'fr'
   const labelsFr: Record<Exclude<RainIntensity, 'none'>, string> = { light: 'Pluie faible', moderate: 'Pluie modérée', heavy: 'Pluie forte' };
   const labelsEn: Record<Exclude<RainIntensity, 'none'>, string> = { light: 'Light rain', moderate: 'Moderate rain', heavy: 'Heavy rain' };
   const what = lang === 'fr' ? labelsFr[intensity] + (isStorm ? ' et orage' : '') : labelsEn[intensity] + (isStorm ? ' and thunderstorm' : '');
-  const when = lang === 'fr' ? `vers ${peak.hour} h` : `around ${formatHourEn(peak.hour)}`;
+  const when = lang === 'fr' ? `vers ${peak.hour}\u00a0h` : `around ${formatHourEn(peak.hour)}`;
   return lang === 'fr' ? `${what} attendue ${when}.${totalText}` : `${what} expected ${when}.${totalText}`;
 }
 
 export function formatMm(v: number, lang: Lang = 'fr'): string {
   const rounded = v >= 10 ? Math.round(v) : Math.round(v * 10) / 10;
   const s = lang === 'fr' ? String(rounded).replace('.', ',') : String(rounded);
-  return `${s} mm`;
+  // Espace insécable : le nombre et l'unité ne sont jamais séparés à la ligne.
+  return `${s}\u00a0mm`;
 }
 
 function formatHourEn(h: number): string {

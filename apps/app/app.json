@@ -1,36 +1,55 @@
 {
   "expo": {
-    "name": "app",
-    "slug": "app",
+    "name": "VigiRisk Cameroun",
+    "slug": "vigirisk-cameroun",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "app",
-    "userInterfaceStyle": "automatic",
+    "scheme": "vigirisk",
+    "userInterfaceStyle": "dark",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "org.ceerema.vigirisk",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "VigiRisk utilise votre position pour trouver votre commune et afficher la météo locale. Votre position n’est pas enregistrée."
+      }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0B1A33",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "org.ceerema.vigirisk",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
-      "output": "server",
-      "favicon": "./assets/images/favicon.png"
+      "output": "single",
+      "favicon": "./assets/images/favicon.png",
+      "name": "VigiRisk Cameroun",
+      "themeColor": "#050B18",
+      "backgroundColor": "#050B18"
     },
     "plugins": [
       "expo-router",
+      "expo-localization",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
+          "backgroundColor": "#050B18",
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 76
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "VigiRisk utilise votre position pour trouver votre commune et afficher la météo locale. Votre position n’est pas enregistrée."
         }
       ]
     ],

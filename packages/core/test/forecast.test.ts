@@ -145,13 +145,13 @@ describe('intensité et phrase de synthèse', () => {
 
   it('annonce le pic de pluie avec l’orage et le cumul', () => {
     const f = parseOpenMeteoForecast(fixture());
-    expect(rainHeadline(f, NOW)).toBe('Pluie forte et orage attendue vers 17 h. Cumul prévu sur 24 h : 12 mm.');
-    expect(rainHeadline(f, NOW, 'en')).toBe('Heavy rain and thunderstorm expected around 5 pm. Expected 24 h total: 12 mm.');
+    expect(rainHeadline(f, NOW)).toBe('Pluie forte et orage attendue vers 17\u00a0h. Cumul prévu sur 24\u00a0h\u00a0: 12\u00a0mm.');
+    expect(rainHeadline(f, NOW, 'en')).toBe('Heavy rain and thunderstorm expected around 5 pm. Expected 24\u00a0h total: 12\u00a0mm.');
   });
 
   it('dit clairement quand aucune pluie n’est attendue', () => {
     const f = parseOpenMeteoForecast(fixture({ precip: () => 0, code: () => 1 }));
-    expect(rainHeadline(f, NOW)).toBe('Pas de pluie significative prévue dans les 12 prochaines heures. Cumul prévu sur 24 h : 0 mm.');
+    expect(rainHeadline(f, NOW)).toBe('Pas de pluie significative prévue dans les 12 prochaines heures. Cumul prévu sur 24\u00a0h\u00a0: 0\u00a0mm.');
   });
 });
 
