@@ -18,7 +18,8 @@ import { colors } from '@/theme/tokens';
 SplashScreen.preventAutoHideAsync();
 
 const queryClient = new QueryClient({
-  defaultOptions: { queries: { retry: 2, networkMode: 'offlineFirst' } },
+  // Une seule nouvelle tentative après 1,5 s : au-delà, l'utilisateur voit l'erreur et peut relancer lui-même.
+  defaultOptions: { queries: { retry: 1, retryDelay: 1500, networkMode: 'offlineFirst' } },
 });
 
 // Cache persistant : les dernières prévisions restent lisibles sans réseau.

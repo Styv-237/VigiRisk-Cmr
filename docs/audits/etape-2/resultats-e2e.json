@@ -1,0 +1,296 @@
+[
+  {
+    "id": "A01",
+    "name": "Premier lancement : écran « Où êtes-vous ? » avec deux actions",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A02",
+    "name": "Recherche : indice affiché sous 2 caractères",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A03",
+    "name": "Recherche « yaounde 7 » : Yaoundé VII en premier",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A04",
+    "name": "Recherche sans résultat : message explicite",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A05",
+    "name": "Recherche injection/XSS : texte rendu tel quel, aucune erreur",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A06",
+    "name": "Choisir une région ouvre la liste de ses communes (Centre → Mbalmayo)",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A07",
+    "name": "Accueil : commune, température, 48 h, 10 jours, cumuls, source",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A08",
+    "name": "48 h : 48 colonnes horaires",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A09",
+    "name": "Persistance : la commune choisie survit au rechargement",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A10",
+    "name": "Toucher le nom de la commune ouvre la recherche ; fermer y revient",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A11",
+    "name": "Lien « Méthodes et sources » ouvre la page et se ferme",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A12",
+    "name": "Onglet « Groupes » : adresse /groupes et écran attendu",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A13",
+    "name": "Onglet « Fil citoyen » : adresse /fil et écran attendu",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A14",
+    "name": "Onglet « Profil » : adresse /profil et écran attendu",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A15",
+    "name": "Onglet « Signaler un incident » : adresse /signaler et écran attendu",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A16",
+    "name": "Onglet « Météo » : adresse / et écran attendu",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A17",
+    "name": "Aucune erreur JavaScript pendant le parcours",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A18",
+    "name": "GPS accordé (Nkolbisson) → « Ma position » Yaoundé VII",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A19",
+    "name": "GPS refusé → message et choix manuel possible",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A20",
+    "name": "Position hors du Cameroun (Paris) → message explicite",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A21",
+    "name": "Lien direct /communes",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A22",
+    "name": "Lien direct /sources",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A23",
+    "name": "Lien direct /fil",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A24",
+    "name": "Page inexistante : message 404 en français avec retour à l’accueil",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A24b",
+    "name": "Plan du site technique (/_sitemap) non exposé en production",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A25",
+    "name": "Interface en anglais pour un navigateur anglophone",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A26",
+    "name": "Attribut lang du document conforme à la langue affichée",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A27",
+    "name": "API indisponible au relancement : dernières prévisions affichées depuis le cache",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A28",
+    "name": "API indisponible sans cache : message clair et bouton Réessayer",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "A29",
+    "name": "Recherche sans réseau : message d’erreur (pas de liste vide silencieuse)",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-320x640",
+    "name": "Responsive 320×640 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-360x740",
+    "name": "Responsive 360×740 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-375x667",
+    "name": "Responsive 375×667 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-390x844",
+    "name": "Responsive 390×844 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-430x932",
+    "name": "Responsive 430×932 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-480x854",
+    "name": "Responsive 480×854 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-768x1024",
+    "name": "Responsive 768×1024 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-1024x768",
+    "name": "Responsive 1024×768 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-1280x800",
+    "name": "Responsive 1280×800 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "C-1920x1080",
+    "name": "Responsive 1920×1080 : pas de débordement, barre d’onglets entière, contenu centré",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "H01",
+    "name": "axe-core WCAG 2.2 A/AA sans violation sérieuse — /",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "H02",
+    "name": "axe-core WCAG 2.2 A/AA sans violation sérieuse — /communes",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "H03",
+    "name": "axe-core WCAG 2.2 A/AA sans violation sérieuse — /sources",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "H04",
+    "name": "Clavier : la touche Tab atteint les 5 onglets avec un focus visible",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "H05",
+    "name": "Animations : pas de pluie animée si « réduire les animations »",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "H06",
+    "name": "Zoom texte 200 % : pas de débordement horizontal à 390 px",
+    "status": "RÉUSSI",
+    "detail": ""
+  },
+  {
+    "id": "F01",
+    "name": "Chargement à froid jusqu’aux prévisions — réseau rapide",
+    "status": "RÉUSSI",
+    "detail": "prêt en 1.5 s, LCP 1320 ms, CLS 0.035, 680 Ko transférés, tas JS 17 Mo"
+  },
+  {
+    "id": "F02",
+    "name": "Chargement à froid jusqu’aux prévisions — 3G lente (400 kb/s, 400 ms)",
+    "status": "ÉCHOUÉ",
+    "detail": "HORS BUDGET (15 s) : prêt en 16.4 s, LCP 15972 ms, CLS 0.035, 680 Ko transférés, tas JS 17 Mo"
+  },
+  {
+    "id": "F03",
+    "name": "Stabilité : 3 minutes d’usage simulé sans fuite mémoire notable",
+    "status": "RÉUSSI",
+    "detail": "1309 cycles, mémoire 18 → 18 Mo"
+  }
+]

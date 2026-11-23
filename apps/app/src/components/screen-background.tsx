@@ -17,7 +17,9 @@ export function ScreenBackground({ weather }: { weather?: WeatherIcon }) {
   const reduceMotion = useReducedMotion();
   const raining = weather != null && RAINY.includes(weather);
   return (
-    <View style={StyleSheet.absoluteFill} pointerEvents="none">
+    // overflow: hidden indispensable : les halos débordent volontairement de l'écran ; sans rognage, la page
+    // web s'élargit et les navigateurs mobiles dézooment tout le contenu.
+    <View style={[StyleSheet.absoluteFill, { overflow: 'hidden' }]} pointerEvents="none">
       <LinearGradient colors={[colors.bgTop, colors.bg1, colors.bg0]} locations={[0, 0.35, 1]} style={StyleSheet.absoluteFill} />
       <Halo color={colors.accent400} opacity={0.32} style={{ left: -150, top: -130, width: 460, height: 460 }} />
       <Halo color={colors.accent300} opacity={0.16} style={{ right: -180, top: 380, width: 460, height: 460 }} />

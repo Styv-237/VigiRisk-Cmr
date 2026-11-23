@@ -6,7 +6,8 @@ import { useEffect, useState } from 'react';
 
 import { colors, radius } from '@/theme/tokens';
 
-type Props = { children: ReactNode; style?: StyleProp<ViewStyle>; level?: 'card' | 'chrome' };
+/** decorative : simple calque de fond, ignoré par les lecteurs d'écran. */
+type Props = { children?: ReactNode; style?: StyleProp<ViewStyle>; level?: 'card' | 'chrome'; decorative?: boolean };
 
 /** Réglage système « Réduire la transparence » (iOS) : on passe au verre opaque. */
 function useReduceTransparency() {
@@ -27,23 +28,28 @@ const LIQUID = Platform.OS === 'ios' && isLiquidGlassAvailable();
  * iOS 26+ : GlassView natif · iOS < 26 : BlurView · Android : teinte opaque (pas de flou, coûteux sur
  * l'entrée de gamme) · Web : backdrop-filter (glass-card.web.tsx). Le contraste du texte ne dépend jamais du fond.
  */
-export function GlassCard({ children, style, level = 'card' }: Props) {
+export function GlassCard({ children, style, level = 'card', decorative = false }: Props) {
   const reduce = useReduceTransparency();
   const r = level === 'chrome' ? radius.xl : radius.lg;
   const frame = [styles.base, { borderRadius: r }, level === 'chrome' && styles.chrome, style];
+  const a11y = decorative ? ({ accessibilityElementsHidden: true, importantForAccessibility: 'no-hide-descendants' } as const) : {};
 
   if (reduce || Platform.OS === 'android') {
-    return <View style={[frame, styles.solid]}>{children}</View>;
+    return (
+      <View style={[frame, styles.solid]} {...a11y}>
+        {children}
+      </View>
+    );
   }
   if (LIQUID) {
     return (
-      <GlassView glassEffectStyle="regular" tintColor="rgba(11,26,51,0.35)" style={frame}>
+      <GlassView glassEffectStyle="regular" tintColor="rgba(11,26,51,0.35)" style={frame} {...a11y}>
         {children}
       </GlassView>
     );
   }
   return (
-    <View style={[frame, styles.clip]}>
+    <View style={[frame, styles.clip]} {...a11y}>
       <BlurView tint="dark" intensity={45} style={StyleSheet.absoluteFill} />
       <View style={[StyleSheet.absoluteFill, styles.veil]} />
       {children}

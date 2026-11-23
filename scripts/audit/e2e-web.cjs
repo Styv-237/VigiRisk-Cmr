@@ -19,9 +19,13 @@ function record(id, name, ok, detail = '') {
 }
 
 async function test(id, name, fn) {
+  if (process.env.AUDIT_ONLY && !id.startsWith(process.env.AUDIT_ONLY)) return;
   try {
+    // Réussite : la fonction renvoie true, ou une chaîne commençant par « OK: » (mesure à consigner).
+    // Toute autre chaîne est le détail d'un échec.
     const r = await fn();
-    record(id, name, r !== false, typeof r === 'string' ? r : '');
+    const ok = r === true || (typeof r === 'string' && r.startsWith('OK: '));
+    record(id, name, ok, typeof r === 'string' ? r.replace(/^OK: /, '') : '');
   } catch (e) {
     record(id, name, false, e.message.split('\n')[0]);
   }
@@ -90,7 +94,8 @@ async function pickCommune(page, query, name) {
     });
     await test('A07', 'Accueil : commune, température, 48 h, 10 jours, cumuls, source', async () => {
       const t = await page.locator('body').innerText();
-      const checks = { commune: t.includes('Mbalmayo'), temp: /\d+°/.test(t), dix: t.includes('Prévisions sur 10 jours'), cumuls: t.includes('Cumuls de pluie'), source: /Open-Meteo · CC BY 4\.0 · mis à jour/.test(t), avert: t.includes('Information indicative') };
+      // innerText applique text-transform (titres en capitales) : comparaisons insensibles à la casse.
+      const checks = { commune: t.includes('Mbalmayo'), temp: /\d+°/.test(t), dix: /prévisions sur 10 jours/i.test(t), cumuls: /cumuls de pluie/i.test(t), source: /Open-Meteo · CC BY 4\.0 · mis à jour/.test(t), avert: t.includes('Information indicative') };
       const ko = Object.entries(checks).filter(([, v]) => !v).map(([k]) => k);
       return ko.length === 0 || `manquant : ${ko.join(', ')}`;
     });
@@ -119,23 +124,23 @@ async function pickCommune(page, query, name) {
       await page.getByText('Prévisions sur 10 jours').waitFor({ timeout: 10000 });
       return ok || 'date de mise à jour absente';
     });
-    for (const [id, label, expected] of [
-      ['A12', 'Groupes', 'étape 7'],
-      ['A13', 'Fil citoyen', 'étape 6'],
-      ['A14', 'Profil', 'étape 4'],
-      ['A15', 'Signaler un incident', 'étape 5'],
+    // Chaque onglet doit changer l'adresse ET afficher son propre écran (le texte seul ne suffit pas :
+    // l'accueil mentionne aussi « étape 6 »).
+    for (const [id, label, route, expected] of [
+      ['A12', 'Groupes', '/groupes', 'étape 7'],
+      ['A13', 'Fil citoyen', '/fil', 'étape 6'],
+      ['A14', 'Profil', '/profil', 'étape 4'],
+      ['A15', 'Signaler un incident', '/signaler', 'étape 5'],
+      ['A16', 'Météo', '/', 'Prévisions sur 10 jours'],
     ]) {
-      await test(id, `Onglet « ${label} » : écran annonçant l'${expected}`, async () => {
+      await test(id, `Onglet « ${label} » : adresse ${route} et écran attendu`, async () => {
         await page.getByLabel(label, { exact: true }).click();
-        await page.getByText(new RegExp(expected)).waitFor({ timeout: 10000 });
-        return true;
+        await page.waitForURL((u) => new URL(u).pathname === route, { timeout: 10000 });
+        await page.getByText(new RegExp(expected)).last().waitFor({ state: 'visible', timeout: 10000 });
+        const selected = await page.getByLabel(label, { exact: true }).getAttribute('aria-selected');
+        return selected === 'true' || `aria-selected=${selected}`;
       });
     }
-    await test('A16', 'Onglet « Météo » ramène à l’accueil', async () => {
-      await page.getByLabel('Météo', { exact: true }).click();
-      await page.getByText('Prévisions sur 10 jours').waitFor({ timeout: 10000 });
-      return true;
-    });
     await test('A17', 'Aucune erreur JavaScript pendant le parcours', async () => page.errors.length === 0 || page.errors.slice(0, 3).join(' | '));
     await ctx.close();
   }
@@ -189,7 +194,15 @@ async function pickCommune(page, query, name) {
     const t = await page.locator('body').innerText();
     await page.screenshot({ path: path.join(OUT, 'A24-404.png') });
     await ctx.close();
-    return /introuvable/i.test(t) || `texte affiché : ${t.slice(0, 120).replace(/\n/g, ' ')}`;
+    return (/introuvable/i.test(t) && !/Sitemap/.test(t)) || `texte affiché : ${t.slice(0, 120).replace(/\n/g, ' ')}`;
+  });
+  await test('A24b', 'Plan du site technique (/_sitemap) non exposé en production', async () => {
+    const { ctx, page } = await newPage(browser);
+    await page.goto(BASE + '/_sitemap', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(800);
+    const t = await page.locator('body').innerText();
+    await ctx.close();
+    return !/Sitemap/i.test(t) || 'la page /_sitemap liste les routes';
   });
   await test('A25', 'Interface en anglais pour un navigateur anglophone', async () => {
     const { ctx, page } = await newPage(browser, { locale: 'en-GB' });
@@ -242,28 +255,33 @@ async function pickCommune(page, query, name) {
   });
 
   // ---------- C. Responsive ----------
+  // Un contexte neuf par taille : émulation téléphone (tactile, densité 3) jusqu'à 480 px, tablette ou
+  // ordinateur au-delà. Contrôles : pas de débordement horizontal, 5 onglets visibles sans chevauchement,
+  // contenu centré.
   const sizes = [[320, 640], [360, 740], [375, 667], [390, 844], [430, 932], [480, 854], [768, 1024], [1024, 768], [1280, 800], [1920, 1080]];
-  {
-    const { ctx, page } = await newPage(browser);
-    await page.goto(BASE, { waitUntil: 'networkidle' });
-    await pickCommune(page, 'yaounde 7', 'Yaoundé VII');
-    for (const [w, h] of sizes) {
-      await test(`C-${w}x${h}`, `Responsive ${w}×${h} : pas de débordement horizontal, barre d’onglets entière`, async () => {
-        await page.setViewportSize({ width: w, height: h });
-        await page.waitForTimeout(400);
-        const m = await page.evaluate(() => {
-          const sw = document.documentElement.scrollWidth, iw = window.innerWidth;
-          const nav = [...document.querySelectorAll('[role="tab"], [aria-label="Signaler un incident"]')].map((e) => e.getBoundingClientRect());
-          const outside = nav.filter((r) => r.left < 0 || r.right > iw + 0.5).length;
-          let overlap = 0;
-          for (let i = 0; i < nav.length; i++) for (let j = i + 1; j < nav.length; j++) if (nav[i].right > nav[j].left + 1 && nav[j].right > nav[i].left + 1 && Math.abs(nav[i].top - nav[j].top) < 30) overlap++;
-          return { sw, iw, tabs: nav.length, outside, overlap };
-        });
-        await page.screenshot({ path: path.join(OUT, `C-${w}x${h}.png`) });
-        return (m.sw <= m.iw && m.tabs === 5 && m.outside === 0 && m.overlap === 0) || JSON.stringify(m);
+  for (const [w, h] of sizes) {
+    await test(`C-${w}x${h}`, `Responsive ${w}×${h} : pas de débordement, barre d’onglets entière, contenu centré`, async () => {
+      const mobile = w <= 480;
+      const { ctx, page } = await newPage(browser, { viewport: { width: w, height: h }, deviceScaleFactor: mobile ? 3 : w <= 1024 ? 2 : 1, isMobile: mobile, hasTouch: w <= 1024 });
+      await page.addInitScript(() => localStorage.setItem('vigirisk.place.v1', JSON.stringify({ pcode: 'CM002007007', name: 'Yaoundé VII', departement: 'Mfoundi', region: 'Centre', origin: 'manual' })));
+      await page.goto(BASE, { waitUntil: 'networkidle' });
+      await page.getByText('Prévisions sur 10 jours').waitFor({ timeout: 20000 });
+      await page.waitForTimeout(400);
+      const m = await page.evaluate(() => {
+        const sw = document.documentElement.scrollWidth, iw = window.innerWidth;
+        const nav = [...document.querySelectorAll('[role="tab"]')].map((e) => e.getBoundingClientRect());
+        const outside = nav.filter((r) => r.left < 0 || r.right > iw + 0.5).length;
+        let overlap = 0;
+        for (let i = 0; i < nav.length; i++) for (let j = i + 1; j < nav.length; j++) if (nav[i].right > nav[j].left + 1 && nav[j].right > nav[i].left + 1 && Math.abs(nav[i].top - nav[j].top) < 30) overlap++;
+        const title = [...document.querySelectorAll('[role="heading"]')].find((e) => e.offsetParent);
+        const r = title ? title.getBoundingClientRect() : null;
+        const offCentre = r ? Math.round(Math.abs(r.left + r.width / 2 - iw / 2)) : -1;
+        return { sw, iw, tabs: nav.length, outside, overlap, offCentre };
       });
-    }
-    await ctx.close();
+      await page.screenshot({ path: path.join(OUT, `C-${w}x${h}.png`) });
+      await ctx.close();
+      return (m.sw <= m.iw && m.tabs === 5 && m.outside === 0 && m.overlap === 0 && m.offCentre >= 0 && m.offCentre <= 2) || JSON.stringify(m);
+    });
   }
 
   // ---------- H. Accessibilité ----------
@@ -356,7 +374,7 @@ async function pickCommune(page, query, name) {
       await ctx.close();
       const detail = `prêt en ${(ready / 1000).toFixed(1)} s, LCP ${v.lcp} ms, CLS ${v.cls}, ${Math.round(bytes / 1024)} Ko transférés, tas JS ${v.heap} Mo`;
       const budget = cond ? 15000 : 4000;
-      return (ready <= budget && v.cls <= 0.1 && `${detail}`) || `HORS BUDGET (${budget / 1000} s) : ${detail}`;
+      return (ready <= budget && v.cls <= 0.1 && `OK: ${detail}`) || `HORS BUDGET (${budget / 1000} s) : ${detail}`;
     });
   }
   await test('F03', 'Stabilité : 3 minutes d’usage simulé sans fuite mémoire notable', async () => {
@@ -377,7 +395,7 @@ async function pickCommune(page, query, name) {
     const h1 = await heap();
     await ctx.close();
     const growth = (h1 - h0) / 1e6;
-    return (growth < 30 && `${cycles} cycles, mémoire ${Math.round(h0 / 1e6)} → ${Math.round(h1 / 1e6)} Mo`) || `croissance ${growth.toFixed(1)} Mo sur ${cycles} cycles`;
+    return (growth < 30 && `OK: ${cycles} cycles, mémoire ${Math.round(h0 / 1e6)} → ${Math.round(h1 / 1e6)} Mo`) || `croissance ${growth.toFixed(1)} Mo sur ${cycles} cycles`;
   });
 
   await browser.close();

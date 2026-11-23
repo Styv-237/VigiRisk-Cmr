@@ -61,7 +61,8 @@ export function useForecast(pcode: string | undefined) {
         .from('forecast_cache')
         .select('commune_pcode, fetched_at, payload, source, is_demo')
         .eq('commune_pcode', pcode!)
-        .maybeSingle();
+        .maybeSingle()
+        .retry(false);
       if (error) throw error;
       if (!data || (data.is_demo && !DEMO_MODE)) return null;
       return {
@@ -89,7 +90,7 @@ export function useAreaSearch(q: string) {
     enabled: term.length >= 2,
     staleTime: 24 * 3_600_000,
     queryFn: async (): Promise<AreaHit[]> => {
-      const { data, error } = await supabase.rpc('search_areas', { q: term, max_results: 25 });
+      const { data, error } = await supabase.rpc('search_areas', { q: term, max_results: 25 }).retry(false);
       if (error) throw error;
       return (data ?? []) as AreaHit[];
     },
@@ -103,20 +104,21 @@ export async function communesUnder(pcode: string): Promise<AreaHit[]> {
     .select('pcode, level, name')
     .eq('level', 3)
     .like('pcode', `${pcode}%`)
-    .order('name');
+    .order('name')
+    .retry(false);
   if (error) throw error;
   return (data ?? []).map((d) => ({ ...d, context: null })) as AreaHit[];
 }
 
 export async function communeAt(lat: number, lon: number): Promise<Place | null> {
-  const { data, error } = await supabase.rpc('commune_at', { lat, lon });
+  const { data, error } = await supabase.rpc('commune_at', { lat, lon }).retry(false);
   if (error) throw error;
   const row = (data as { pcode: string; name: string; departement: string; region: string }[] | null)?.[0];
   return row ? { pcode: row.pcode, name: row.name, departement: row.departement, region: row.region, origin: 'gps' } : null;
 }
 
 export async function communeContext(pcode: string): Promise<{ departement: string; region: string } | null> {
-  const { data } = await supabase.from('admin_areas').select('pcode, name').in('pcode', [pcode.slice(0, 8), pcode.slice(0, 5)]);
+  const { data } = await supabase.from('admin_areas').select('pcode, name').in('pcode', [pcode.slice(0, 8), pcode.slice(0, 5)]).retry(false);
   if (!data) return null;
   return {
     departement: data.find((d) => d.pcode.length === 8)?.name ?? '',

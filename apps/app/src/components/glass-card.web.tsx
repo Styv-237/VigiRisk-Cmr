@@ -3,13 +3,13 @@ import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native';
 
 import classes from './glass-card.module.css';
 
-type Props = { children: ReactNode; style?: StyleProp<ViewStyle>; level?: 'card' | 'chrome' };
+type Props = { children?: ReactNode; style?: StyleProp<ViewStyle>; level?: 'card' | 'chrome'; decorative?: boolean };
 
 /** Propriétés de placement à porter par le conteneur DOM (sinon la carte ne s'étire pas dans son parent). */
-const OUTER = ['flex', 'flexGrow', 'flexShrink', 'flexBasis', 'width', 'maxWidth', 'minWidth', 'minHeight', 'alignSelf', 'margin', 'marginTop', 'marginBottom', 'borderRadius', 'borderColor'] as const;
+const OUTER = ['position', 'top', 'left', 'right', 'bottom', 'flex', 'flexGrow', 'flexShrink', 'flexBasis', 'width', 'maxWidth', 'minWidth', 'minHeight', 'alignSelf', 'margin', 'marginTop', 'marginBottom', 'borderRadius', 'borderColor'] as const;
 
 /** Version web : backdrop-filter natif du navigateur, repli opaque via @supports et prefers-reduced-transparency. */
-export function GlassCard({ children, style, level = 'card' }: Props) {
+export function GlassCard({ children, style, level = 'card', decorative = false }: Props) {
   const flat = (StyleSheet.flatten(style) ?? {}) as Record<string, unknown>;
   const outer: Record<string, unknown> = {};
   const inner: Record<string, unknown> = {};
@@ -25,9 +25,10 @@ export function GlassCard({ children, style, level = 'card' }: Props) {
     outer.flexBasis = 0;
     delete outer.flex;
   }
+  for (const k of ['top', 'left', 'right', 'bottom'] as const) if (typeof outer[k] === 'number') outer[k] = `${outer[k]}px`;
   outer.boxSizing = 'border-box';
   return (
-    <div className={level === 'chrome' ? `${classes.glass} ${classes.chrome}` : classes.glass} style={outer as CSSProperties}>
+    <div className={level === 'chrome' ? `${classes.glass} ${classes.chrome}` : classes.glass} style={outer as CSSProperties} aria-hidden={decorative || undefined}>
       <View style={[inner as ViewStyle, { flexGrow: 1 }]}>{children}</View>
     </div>
   );

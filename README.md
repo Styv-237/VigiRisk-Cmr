@@ -74,7 +74,7 @@ pnpm --filter @vigirisk/core test
 pnpm test:db
 ```
 
-35 tests pgTAP sur un Postgres 16 + PostGIS + pgTAP local (paquets Ubuntu `postgresql-16-postgis-3` et `postgresql-16-pgtap`) :
+38 tests pgTAP sur un Postgres 16 + PostGIS + pgTAP local (paquets Ubuntu `postgresql-16-postgis-3` et `postgresql-16-pgtap`) :
 - RLS active sur chaque table ;
 - lecture publique des limites et des prévisions ;
 - aucune écriture pour `anon` et `authenticated` ;
@@ -85,6 +85,20 @@ pnpm test:db
 ```bash
 cd apps/app && npx tsc --noEmit
 ```
+
+Parité des traductions FR/EN (et clés utilisées présentes) :
+
+```bash
+pnpm test:i18n
+```
+
+Tests de bout en bout du site de production (49 tests Playwright : parcours, 10 tailles d'écran, accessibilité axe-core et clavier, réseau coupé, 3G lente, endurance). Le site doit être servi (`npx serve -s apps/app/dist -l 8092`) et `axe-core` installé :
+
+```bash
+AUDIT_URL=http://localhost:8092 node scripts/audit/e2e-web.cjs audit-out
+```
+
+Dernier audit complet : [`docs/audits/audit-etape-2.md`](docs/audits/audit-etape-2.md).
 
 Démonstration web automatisée (Playwright), serveur web lancé :
 

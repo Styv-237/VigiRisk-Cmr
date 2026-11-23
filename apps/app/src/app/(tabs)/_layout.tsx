@@ -22,7 +22,7 @@ function TabButton({ icon, label, isFocused, ...props }: Omit<TabTriggerSlotProp
       {...props}
       onPressIn={tap}
       accessibilityRole="tab"
-      accessibilityState={{ selected: !!isFocused }}
+      aria-selected={!!isFocused}
       accessibilityLabel={label}
       style={({ pressed }) => [styles.tab, pressed && { opacity: 0.7 }]}>
       <Icon name={icon} color={isFocused ? colors.accent200 : colors.textSecondary} />
@@ -33,12 +33,14 @@ function TabButton({ icon, label, isFocused, ...props }: Omit<TabTriggerSlotProp
   );
 }
 
-function ReportButton({ label, isFocused: _f, ...props }: Omit<TabTriggerSlotProps, 'ref'> & { label: string }) {
+// Le bouton central ouvre l'onglet « Signaler » : rôle d'onglet (une liste d'onglets ne contient que des onglets).
+function ReportButton({ label, isFocused, ...props }: Omit<TabTriggerSlotProps, 'ref'> & { label: string }) {
   return (
     <Pressable
       {...props}
       onPressIn={() => Platform.OS !== 'web' && Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {})}
-      accessibilityRole="button"
+      accessibilityRole="tab"
+      aria-selected={!!isFocused}
       accessibilityLabel={label}
       style={({ pressed }) => [styles.report, pressed && { transform: [{ scale: 0.95 }] }]}>
       <Icon name="plus" color={colors.onAccent} size={26} strokeWidth={2.2} />
@@ -53,27 +55,26 @@ export default function TabsLayout() {
   return (
     <Tabs style={{ flex: 1, backgroundColor: colors.bg0 }}>
       <TabSlot style={{ flex: 1 }} />
+      {/* Expo Router n'enregistre comme onglets que les TabTrigger enfants DIRECTS de la TabList :
+          le verre est donc un calque de fond, frère des déclencheurs, et non leur conteneur. */}
       <TabList asChild>
-        <View style={StyleSheet.flatten([styles.barWrap, { bottom: Math.max(insets.bottom, 12) + 6 }])} pointerEvents="box-none">
-          <GlassCard level="chrome" style={styles.bar}>
-            <View style={styles.row} accessibilityRole="tablist">
-              <TabTrigger name="index" href="/" asChild>
-                <TabButton icon="cloud" label={t('tabs.weather')} />
-              </TabTrigger>
-              <TabTrigger name="groupes" href="/groupes" asChild>
-                <TabButton icon="groups" label={t('tabs.groups')} />
-              </TabTrigger>
-              <TabTrigger name="signaler" href="/signaler" asChild>
-                <ReportButton label={t('tabs.report')} />
-              </TabTrigger>
-              <TabTrigger name="fil" href="/fil" asChild>
-                <TabButton icon="people" label={t('tabs.feed')} />
-              </TabTrigger>
-              <TabTrigger name="profil" href="/profil" asChild>
-                <TabButton icon="person" label={t('tabs.profile')} />
-              </TabTrigger>
-            </View>
-          </GlassCard>
+        <View style={StyleSheet.flatten([styles.bar, { bottom: Math.max(insets.bottom, 12) + 6 }])} accessibilityRole="tablist">
+          <GlassCard level="chrome" style={StyleSheet.absoluteFill} decorative />
+          <TabTrigger name="index" href="/" asChild>
+            <TabButton icon="cloud" label={t('tabs.weather')} />
+          </TabTrigger>
+          <TabTrigger name="groupes" href="/groupes" asChild>
+            <TabButton icon="groups" label={t('tabs.groups')} />
+          </TabTrigger>
+          <TabTrigger name="signaler" href="/signaler" asChild>
+            <ReportButton label={t('tabs.report')} />
+          </TabTrigger>
+          <TabTrigger name="fil" href="/fil" asChild>
+            <TabButton icon="people" label={t('tabs.feed')} />
+          </TabTrigger>
+          <TabTrigger name="profil" href="/profil" asChild>
+            <TabButton icon="person" label={t('tabs.profile')} />
+          </TabTrigger>
         </View>
       </TabList>
     </Tabs>
@@ -81,9 +82,18 @@ export default function TabsLayout() {
 }
 
 const styles = StyleSheet.create({
-  barWrap: { position: 'absolute', left: 12, right: 12, alignItems: 'center' },
-  bar: { width: '100%', maxWidth: 520 },
-  row: { height: 72, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', paddingHorizontal: 6 },
+  bar: {
+    position: 'absolute',
+    left: 12,
+    right: 12,
+    maxWidth: 520,
+    marginHorizontal: 'auto',
+    height: 72,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingHorizontal: 6,
+  },
   tab: { minWidth: 56, minHeight: MIN_TOUCH, alignItems: 'center', justifyContent: 'center', gap: 3 },
   tabLabel: { fontFamily: fonts.medium, fontSize: 11, color: colors.textSecondary },
   tabLabelActive: { fontFamily: fonts.semibold, color: colors.accent200 },

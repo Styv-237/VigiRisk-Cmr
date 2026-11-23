@@ -5,6 +5,8 @@
   "scripts": {
     "test": "pnpm -r --if-present test",
     "test:db": "bash supabase/tests/run-local.sh",
-    "typecheck": "pnpm -r --if-present typecheck"
+    "typecheck": "pnpm -r --if-present typecheck",
+    "test:e2e": "node scripts/audit/e2e-web.cjs audit-out",
+    "test:i18n": "node scripts/audit/i18n-parity.cjs"
   }
 }
